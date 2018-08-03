@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="textsize_sp_15">15sp</dimen>
+
+    <dimen name="padding_dp_5">5dp</dimen>
+    <dimen name="padding_dp_8">8dp</dimen>
+    <dimen name="padding_dp_10">10dp</dimen>
+    <dimen name="padding_dp_12">12dp</dimen>
+    <dimen name="padding_dp_13">13dp</dimen>
+    <dimen name="padding_dp_14">14dp</dimen>
+    <dimen name="padding_dp_30">30dp</dimen>
+</resources>

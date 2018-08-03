@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="SearchBar">
+        <attr name="SearchBarBackgroundColor" format="color" />
+        <attr name="SearchBarEditBackground" format="reference" />
+        <attr name="SearchBarEditPadding" format="dimension" />
+        <attr name="SearchBarEditTextColor" format="color" />
+        <attr name="SearchBarEditTextHintColor" format="color" />
+        <attr name="SearchBarEditTextSize" format="dimension" />
+        <attr name="SearchBarEditTextPadding" format="dimension" />
+        <attr name="SearchBarEditTextDrawable" format="reference" />
+        <attr name="SearchBarEditTextDrawablePadding" format="dimension" />
+        <attr name="SearchBarScanDrawable" format="reference" />
+        <attr name="SearchBarScanPadding" format="dimension" />
+        <attr name="SearchBarSearchDrawable" format="reference" />
+        <attr name="SearchBarSearchPadding" format="dimension" />
+        <attr name="SearchBarEdittextHintContent" format="string" />
+        <attr name="SearchBarSearchContent" format="string" />
+        <attr name="SearchBarType" format="integer" />
+    </declare-styleable>
+</resources>

@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">SearchBar</string>
+    <string name="btn_search_content">搜索</string>
+    <string name="btn_sure_content">确定</string>
+</resources>

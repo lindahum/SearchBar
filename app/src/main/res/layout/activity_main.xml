@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+
+    <com.milinda.searchbar.SearchBar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:SearchBarType="0"
+        app:SearchBarEdittextHintContent="sku编码"
+        />
+
+    <com.milinda.searchbar.SearchBar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:SearchBarType="1"
+        app:SearchBarEdittextHintContent="sku1编码"
+        />
+
+    <com.milinda.searchbar.SearchBar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:SearchBarType="2"
+        app:SearchBarEdittextHintContent="sku2编码"
+        />
+
+    <com.milinda.searchbar.SearchBar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:SearchBarType="3"
+        app:SearchBarEdittextHintContent="sku3编码"
+        />
+
+</LinearLayout>
