@@ -48,6 +48,8 @@ public class SearchBar extends RelativeLayout{
     private final int SEARCHBAR_TYPE_CHOOSE=2;
     //输入组件 白底+白底方角
     private final int SEARCHBAR_TYPE_NO=3;
+    //选择组件 白底+白底方角 + 向下选择
+    private final int SEARCHBAR_TYPE_CHOOSE_DOWN=4;
 
     private static boolean isShowScan=true;
     private static boolean isShowSearch=true;
@@ -312,6 +314,16 @@ public class SearchBar extends RelativeLayout{
                 setEditBg(R.drawable.bg_edittext_line);
                 setScanDrawable(R.drawable.ic_small_arrow_right);
                 setEditTextPadding(getResources().getDimensionPixelOffset(R.dimen.padding_dp_12));
+                forbidEdittext(etSearch);
+                break;
+            case SEARCHBAR_TYPE_CHOOSE_DOWN:
+                tvScan.setVisibility(VISIBLE);
+                tvSearch.setVisibility(GONE);
+                setBgColor(ContextCompat.getColor(context, R.color.white));
+                setEditBg(R.drawable.bg_edittext_line);
+                setScanDrawable(R.drawable.ic_down);
+                setEditTextPadding(getResources().getDimensionPixelOffset(R.dimen.padding_dp_12));
+                forbidEdittext(etSearch);
                 break;
             case SEARCHBAR_TYPE_NO:
                 tvScan.setVisibility(GONE);
@@ -340,5 +352,31 @@ public class SearchBar extends RelativeLayout{
     public static void initConfig(Boolean isShowScanB,Boolean isShowSearchB){
         isShowScan=isShowScanB;
         isShowSearch=isShowSearchB;
+    }
+
+    /**
+     * 设置编辑框不可用
+     * @param view
+     */
+    public static void forbidEdittext(EditText view){
+        if(view==null){
+            return;
+        }
+        view.setCursorVisible(false);
+        view.setFocusable(false);
+        view.setFocusableInTouchMode(false);
+    }
+
+    /**
+     * 设置编辑框可用
+     * @param view
+     */
+    public static void enabledEdittext(EditText view){
+        if(view==null){
+            return;
+        }
+        view.setCursorVisible(true);
+        view.setFocusable(true);
+        view.setFocusableInTouchMode(true);
     }
 }

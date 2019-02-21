@@ -33,4 +33,11 @@
         app:SearchBarEdittextHintContent="sku3编码"
         />
 
+    <com.milinda.searchbar.SearchBar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:SearchBarType="4"
+        app:SearchBarEdittextHintContent="sku2编码"
+        />
+
 </LinearLayout>
