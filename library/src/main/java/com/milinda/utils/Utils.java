@@ -1,7 +1,8 @@
-package com.milinda.searchbar;
+package com.milinda.utils;
 
 import android.content.Context;
 import android.util.DisplayMetrics;
+import android.widget.EditText;
 
 /**
  * 作者:Milinda 邮件:Milinda.Hu@gmail.com
@@ -55,8 +56,35 @@ public final class Utils {
      * @return
      */
     public static float handleTextSize(Context context,float textSize,int textSizeRes){
-        textSize=textSize==0?context.getResources().getDimensionPixelSize(textSizeRes):textSize;
+        textSize=textSize==0?context.getResources().getDimension(textSizeRes):textSize;
         textSize=Utils.px2sp(context,textSize);
         return textSize;
+    }
+
+
+    /**
+     * 设置编辑框不可用
+     * @param view
+     */
+    public static void forbidEdittext(EditText view){
+        if(view==null){
+            return;
+        }
+        view.setCursorVisible(false);
+        view.setFocusable(false);
+        view.setFocusableInTouchMode(false);
+    }
+
+    /**
+     * 设置编辑框可用
+     * @param view
+     */
+    public static void enabledEdittext(EditText view){
+        if(view==null){
+            return;
+        }
+        view.setCursorVisible(true);
+        view.setFocusable(true);
+        view.setFocusableInTouchMode(true);
     }
 }

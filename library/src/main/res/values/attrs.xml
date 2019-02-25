@@ -4,6 +4,7 @@
         <attr name="SearchBarBackgroundColor" format="color" />
         <attr name="SearchBarEditBackground" format="reference" />
         <attr name="SearchBarEditPadding" format="dimension" />
+        <attr name="SearchBarEditBottomPadding" format="dimension" />
         <attr name="SearchBarEditTextColor" format="color" />
         <attr name="SearchBarEditTextHintColor" format="color" />
         <attr name="SearchBarEditTextSize" format="dimension" />
@@ -17,5 +18,31 @@
         <attr name="SearchBarEdittextHintContent" format="string" />
         <attr name="SearchBarSearchContent" format="string" />
         <attr name="SearchBarType" format="integer" />
+    </declare-styleable>
+
+    <declare-styleable name="DescriptionText">
+        <attr name="DescriptionTextBackgroundColor" format="color" />
+        <attr name="DescriptionTextBackground" format="reference" />
+        <attr name="DescriptionTextPadding" format="dimension" />
+        <attr name="DescriptionTextLeftTextCotent" format="string" />
+        <attr name="DescriptionTextLeftTextColor" format="color" />
+        <attr name="DescriptionTextLeftTextSize" format="dimension" />
+        <attr name="DescriptionTextRightTextCotent" format="string" />
+        <attr name="DescriptionTextRightTextColor" format="color" />
+        <attr name="DescriptionTextRightTextSize" format="dimension" />
+        <attr name="DescriptionTextLeftPadding" format="dimension" />
+        <attr name="DescriptionTextRightPadding" format="dimension" />
+        <attr name="DescriptionTextLeftDrawable" format="reference" />
+        <attr name="DescriptionTextLeftDrawablePadding" format="dimension" />
+        <attr name="DescriptionTextRightDrawable" format="reference" />
+        <attr name="DescriptionTextRightDrawablePadding" format="dimension" />
+
+        <attr name="DescriptionTextRightGravity" >
+            <flag name="right" value="1" />
+            <flag name="left" value="0" />
+        </attr>
+
+        <attr name="DescriptionTextType" format="integer" />
+
     </declare-styleable>
 </resources>

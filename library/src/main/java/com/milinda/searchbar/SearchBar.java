@@ -13,6 +13,8 @@ import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.milinda.utils.Utils;
+
 /**
  * 作者:Milinda 邮件:Milinda.Hu@gmail.com
  * 创建时间:2018/8/1
@@ -22,6 +24,7 @@ public class SearchBar extends RelativeLayout{
 
     private int bgColor;
     private int editBg;
+    private int editBottomPadding;
     private int editPadding;
     private int editTextColor;
     private int editTextHintColor;
@@ -83,51 +86,55 @@ public class SearchBar extends RelativeLayout{
                 int attr = t.getIndex(i);
                 if (attr == R.styleable.SearchBar_SearchBarBackgroundColor) {
                     bgColor = t.getColor(R.styleable.SearchBar_SearchBarBackgroundColor,
-                            ContextCompat.getColor(context, R.color.background));
+                            0);
 
                 }else if (attr == R.styleable.SearchBar_SearchBarEditBackground) {
                     editBg = t.getResourceId(R.styleable.SearchBar_SearchBarEditBackground,0);
 
                 }else if (attr == R.styleable.SearchBar_SearchBarEditPadding) {
                     editPadding = t.getDimensionPixelOffset(R.styleable.SearchBar_SearchBarEditPadding,
-                            getResources().getDimensionPixelOffset(R.dimen.padding_dp_10));
+                            0);
+
+                }else if (attr == R.styleable.SearchBar_SearchBarEditBottomPadding) {
+                    editBottomPadding = t.getDimensionPixelOffset(R.styleable.SearchBar_SearchBarEditBottomPadding,
+                            0);
 
                 }else if (attr == R.styleable.SearchBar_SearchBarEditTextColor) {
                     editTextColor = t.getColor(R.styleable.SearchBar_SearchBarEditTextColor,
-                            ContextCompat.getColor(context, R.color.textcolor_333));
+                            0);
 
                 }else if (attr == R.styleable.SearchBar_SearchBarEditTextHintColor) {
                     editTextHintColor = t.getColor(R.styleable.SearchBar_SearchBarEditTextHintColor,
-                            ContextCompat.getColor(context, R.color.textcolor_ccc));
+                            0);
 
                 }else if (attr == R.styleable.SearchBar_SearchBarEditTextSize) {
                     editTextSize = t.getDimension(R.styleable.SearchBar_SearchBarEditTextSize,
-                            getResources().getDimension(R.dimen.textsize_sp_15));
+                            0);
 
                 }else if (attr == R.styleable.SearchBar_SearchBarEditTextPadding) {
                     editTextPadding = t.getDimensionPixelOffset(R.styleable.SearchBar_SearchBarEditTextPadding,
-                            getResources().getDimensionPixelOffset(R.dimen.padding_dp_10));
+                            0);
 
                 }else if (attr == R.styleable.SearchBar_SearchBarEditTextDrawable) {
                     editTextDrawable = t.getResourceId(R.styleable.SearchBar_SearchBarEditTextDrawable,0);
 
                 }else if (attr == R.styleable.SearchBar_SearchBarEditTextDrawablePadding) {
                     editTextDrawablePadding = t.getDimensionPixelOffset(R.styleable.SearchBar_SearchBarEditTextDrawablePadding,
-                            getResources().getDimensionPixelOffset(R.dimen.padding_dp_10));
+                           0);
 
                 }else if (attr == R.styleable.SearchBar_SearchBarScanDrawable) {
                     scanDrawable = t.getResourceId(R.styleable.SearchBar_SearchBarScanDrawable,0);
 
                 }else if (attr == R.styleable.SearchBar_SearchBarScanPadding) {
                     scanPadding = t.getDimensionPixelOffset(R.styleable.SearchBar_SearchBarScanPadding,
-                            getResources().getDimensionPixelOffset(R.dimen.padding_dp_10));
+                            0);
 
                 }else if (attr == R.styleable.SearchBar_SearchBarSearchDrawable) {
                     searchDrawable = t.getResourceId(R.styleable.SearchBar_SearchBarSearchDrawable, 0);
 
                 }else if (attr == R.styleable.SearchBar_SearchBarSearchPadding) {
                     searchPadding = t.getDimensionPixelOffset(R.styleable.SearchBar_SearchBarSearchPadding,
-                            getResources().getDimensionPixelOffset(R.dimen.padding_dp_10));
+                          0);
 
                 } else if (attr == R.styleable.SearchBar_SearchBarType) {
                     type = t.getInteger(R.styleable.SearchBar_SearchBarType, 0);
@@ -159,9 +166,11 @@ public class SearchBar extends RelativeLayout{
         rlSearchEdit= view.findViewById(R.id.rl_search_edit);
         rlSearchBar= view.findViewById(R.id.rl_searchbar);
 
+        setType(type);
+
         setBgColor(bgColor);
         setEditBg(editBg);
-        setEditPadding(editPadding);
+        setEditPadding(editPadding,editBottomPadding);
         setEditTextColor(editTextColor);
         setEditTextHintColor(editTextHintColor);
         setEditTextSize(editTextSize);
@@ -174,9 +183,9 @@ public class SearchBar extends RelativeLayout{
         setSearchPadding(searchPadding);
         setSearchContent(searchContent);
         setEditHintContent(editHintContent);
-        setType(type);
 
         setConfig();
+
     }
 
     private void setConfig() {
@@ -190,46 +199,56 @@ public class SearchBar extends RelativeLayout{
 
 
     public void setBgColor(int bgColor) {
-        bgColor = bgColor==0?ContextCompat.getColor(context, R.color.background):bgColor;
-        this.bgColor = bgColor;
-        rlSearchBar.setBackgroundColor(bgColor);
+        if(bgColor!=0){
+            this.bgColor = bgColor;
+            rlSearchBar.setBackgroundColor(bgColor);
+        }
     }
 
     public void setEditBg(int editBg) {
         if(editBg>0){
-            rlSearchEdit.setBackground(ResourcesCompat.getDrawable(getResources(), editBg, null));
+            rlSearchEdit.setBackgroundResource(editBg);
             this.editBg = editBg;
         }
     }
 
-    public void setEditPadding(int editPadding) {
-        editPadding=editPadding==0?getResources().getDimensionPixelOffset(R.dimen.padding_dp_13):editPadding;
-        this.editPadding = editPadding;
-        rlSearchBar.setPadding(editPadding,editPadding,editPadding,editPadding);
+    public void setEditPadding(int editPadding,int editBottomPadding) {
+        if(editPadding>0) {
+            this.editPadding = editPadding;
+
+            if(editBottomPadding>0) {
+                this.editBottomPadding = editBottomPadding;
+            }
+            rlSearchBar.setPadding(editPadding, editPadding, editPadding, editBottomPadding);
+        }
     }
 
     public void setEditTextColor(int editTextColor) {
-        editTextColor = editTextColor==0?ContextCompat.getColor(context, R.color.textcolor_333):editTextColor;
-        this.editTextColor = editTextColor;
-        etSearch.setTextColor(editTextColor);
+        if(editTextColor!=0){
+            this.editTextColor = editTextColor;
+            etSearch.setTextColor(editTextColor);
+        }
     }
 
     public void setEditTextHintColor(int editTextHintColor) {
-        editTextHintColor = editTextHintColor==0?ContextCompat.getColor(context, R.color.textcolor_ccc):editTextHintColor;
-        this.editTextHintColor = editTextHintColor;
-        etSearch.setHintTextColor(editTextColor);
+        if(editTextHintColor!=0){
+            this.editTextHintColor = editTextHintColor;
+            etSearch.setHintTextColor(editTextHintColor);
+        }
     }
 
     public void setEditTextSize(float editTextSize) {
-        editTextSize=Utils.handleTextSize(context,editTextSize,R.dimen.textsize_sp_15);
-        this.editTextSize = editTextSize;
-        etSearch.setTextSize(TypedValue.COMPLEX_UNIT_SP,editTextSize);
+        if(editTextSize>0){
+            this.editTextSize = editTextSize;
+            etSearch.setTextSize(TypedValue.COMPLEX_UNIT_PX,editTextSize);
+        }
     }
 
     public void setEditTextPadding(int editTextPadding) {
-        editTextPadding=editTextPadding==0?getResources().getDimensionPixelOffset(R.dimen.padding_dp_10):editTextPadding;
-        this.editTextPadding = editTextPadding;
-        etSearch.setPadding(editTextPadding,editTextPadding,editTextPadding,editTextPadding);
+        if(editTextPadding>0){
+            this.editTextPadding = editTextPadding;
+            etSearch.setPadding(editTextPadding,editTextPadding,editTextPadding,editTextPadding);
+        }
     }
 
     public void setEditTextDrawable(int editTextDrawable) {
@@ -240,9 +259,10 @@ public class SearchBar extends RelativeLayout{
     }
 
     public void setEditTextDrawablePadding(int editTextDrawablePadding) {
-        editTextDrawablePadding=editTextDrawablePadding==0?getResources().getDimensionPixelOffset(R.dimen.padding_dp_10):editTextDrawablePadding;
-        this.editTextDrawablePadding = editTextDrawablePadding;
-        etSearch.setCompoundDrawablePadding(editTextDrawablePadding);
+        if(editTextDrawablePadding>0){
+            this.editTextDrawablePadding = editTextDrawablePadding;
+            etSearch.setCompoundDrawablePadding(editTextDrawablePadding);
+        }
     }
 
     public void setScanDrawable(int scanDrawable) {
@@ -253,9 +273,10 @@ public class SearchBar extends RelativeLayout{
     }
 
     public void setScanPadding(int scanPadding) {
-        scanPadding=scanPadding==0?getResources().getDimensionPixelOffset(R.dimen.padding_dp_10):scanPadding;
-        this.scanPadding = scanPadding;
-        tvScan.setPadding(scanPadding,scanPadding,scanPadding,scanPadding);
+        if(scanPadding>0){
+            this.scanPadding = scanPadding;
+            tvScan.setPadding(scanPadding,scanPadding,scanPadding,scanPadding);
+        }
     }
 
     public void setSearchDrawable(int searchDrawable) {
@@ -266,9 +287,10 @@ public class SearchBar extends RelativeLayout{
     }
 
     public void setSearchPadding(int searchPadding) {
-        searchPadding=searchPadding==0?getResources().getDimensionPixelOffset(R.dimen.padding_dp_10):searchPadding;
-        this.searchPadding = searchPadding;
-        tvSearch.setPadding(searchPadding,searchPadding,0,searchPadding);
+        if(searchPadding>0){
+            this.searchPadding = searchPadding;
+            tvSearch.setPadding(searchPadding,searchPadding,0,searchPadding);
+        }
     }
 
     private void setEditorAction(int action){
@@ -287,50 +309,175 @@ public class SearchBar extends RelativeLayout{
             case SEARCHBAR_TYPE_SCAN_SEARCH:
                 tvScan.setVisibility(VISIBLE);
                 tvSearch.setVisibility(VISIBLE);
-                setBgColor(ContextCompat.getColor(context, R.color.background));
-                setEditBg(R.drawable.bg_edittext_search_white);
-                setEditTextDrawable(R.drawable.ic_search_goods);
-                setSearchPadding(getResources().getDimensionPixelOffset(R.dimen.padding_dp_10));
-                setSearchContent(context.getString(R.string.btn_search_content));
-                setScanDrawable(R.drawable.ic_scan);
-                setScanPadding(getResources().getDimensionPixelOffset(R.dimen.padding_dp_14));
+                if(bgColor==0){
+                    setBgColor(ContextCompat.getColor(context,R.color.background));
+                }
+                if(editBg==0){
+                    setEditBg(R.drawable.bg_edittext_search_white);
+                }
+                if(editTextPadding==0){
+                    setEditTextPadding(getResources().getDimensionPixelOffset(R.dimen.padding_dp_10));
+                }
+                if(editTextSize==0){
+                    setEditTextSize(getResources().getDimension(R.dimen.textsize_sp_15));
+                }
+                if(editTextColor==0){
+                    setEditTextColor(ContextCompat.getColor(context,R.color.textcolor_333));
+                }
+                if(editTextHintColor==0){
+                    setEditTextHintColor(ContextCompat.getColor(context,R.color.textcolor_ccc));
+                }
+                if(editTextDrawable==0){
+                    setEditTextDrawable(R.drawable.ic_search_goods);
+                }
+                if(editTextDrawablePadding==0){
+                    setEditTextDrawablePadding(getResources().getDimensionPixelOffset(R.dimen.padding_dp_10));
+                }
+                if(searchPadding==0){
+                    setSearchPadding(getResources().getDimensionPixelOffset(R.dimen.padding_dp_10));
+                }
+                if(Utils.isTrimEmpty(searchContent)){
+                    setSearchContent(context.getString(R.string.btn_search_content));
+                }
+                if(scanDrawable==0){
+                    setScanDrawable(R.drawable.ic_scan);
+                }
+                if(scanPadding==0){
+                    setScanPadding(getResources().getDimensionPixelOffset(R.dimen.padding_dp_14));
+                }
+                if(editPadding==0){
+                    setEditPadding(getResources().getDimensionPixelOffset(R.dimen.padding_dp_10),
+                            getResources().getDimensionPixelOffset(R.dimen.padding_dp_10));
+                }
+
                 break;
             case SEARCHBAR_TYPE_SCAN_SURE:
                 tvScan.setVisibility(VISIBLE);
                 tvSearch.setVisibility(VISIBLE);
-                setBgColor(ContextCompat.getColor(context, R.color.white));
-                setEditBg(R.drawable.bg_edittext_line);
-                setEditTextPadding(getResources().getDimensionPixelOffset(R.dimen.padding_dp_12));
-                setScanDrawable(R.drawable.ic_scan);
-                setScanPadding(getResources().getDimensionPixelOffset(R.dimen.padding_dp_8));
-                setSearchContent("");
-                setSearchDrawable(R.drawable.ic_action_go);
-                setSearchPadding(getResources().getDimensionPixelOffset(R.dimen.padding_dp_10));
+
+                if(bgColor==0){
+                    setBgColor(ContextCompat.getColor(context,R.color.white));
+                }
+                if(editBg==0){
+                    setEditBg(R.drawable.bg_edittext_line);
+                }
+                if(editTextPadding==0){
+                    setEditTextPadding(getResources().getDimensionPixelOffset(R.dimen.padding_dp_10));
+                }
+                if(editTextSize==0){
+                    setEditTextSize(getResources().getDimension(R.dimen.textsize_sp_15));
+                }
+                if(editTextColor==0){
+                    setEditTextColor(ContextCompat.getColor(context,R.color.textcolor_333));
+                }
+                if(editTextHintColor==0){
+                    setEditTextHintColor(ContextCompat.getColor(context,R.color.textcolor_ccc));
+                }
+                if(searchDrawable==0){
+                    setSearchDrawable(R.drawable.ic_action_go);
+                }
+                if(searchPadding==0){
+                    setSearchPadding(getResources().getDimensionPixelOffset(R.dimen.padding_dp_10));
+                }
+
+                if(scanDrawable==0){
+                    setScanDrawable(R.drawable.ic_scan);
+                }
+                if(scanPadding==0){
+                    setScanPadding(getResources().getDimensionPixelOffset(R.dimen.padding_dp_8));
+                }
+                if(editPadding==0){
+                    setEditPadding(getResources().getDimensionPixelOffset(R.dimen.padding_dp_10),0);
+                }
+
                 break;
             case SEARCHBAR_TYPE_CHOOSE:
                 tvScan.setVisibility(VISIBLE);
                 tvSearch.setVisibility(GONE);
-                setBgColor(ContextCompat.getColor(context, R.color.white));
-                setEditBg(R.drawable.bg_edittext_line);
-                setScanDrawable(R.drawable.ic_small_arrow_right);
-                setEditTextPadding(getResources().getDimensionPixelOffset(R.dimen.padding_dp_12));
-                forbidEdittext(etSearch);
+
+                if(bgColor==0){
+                    setBgColor(ContextCompat.getColor(context,R.color.white));
+                }
+                if(editBg==0){
+                    setEditBg(R.drawable.bg_edittext_line);
+                }
+                if(editTextPadding==0){
+                    setEditTextPadding(getResources().getDimensionPixelOffset(R.dimen.padding_dp_10));
+                }
+                if(editTextSize==0){
+                    setEditTextSize(getResources().getDimension(R.dimen.textsize_sp_15));
+                }
+                if(editTextColor==0){
+                    setEditTextColor(ContextCompat.getColor(context,R.color.textcolor_333));
+                }
+                if(scanDrawable==0){
+                    setScanDrawable(R.drawable.ic_small_arrow_right);
+                }
+                if(scanPadding==0){
+                    setScanPadding(getResources().getDimensionPixelOffset(R.dimen.padding_dp_8));
+                }
+                if(editPadding==0){
+                    setEditPadding(getResources().getDimensionPixelOffset(R.dimen.padding_dp_10),0);
+                }
+
+                Utils.forbidEdittext(etSearch);
                 break;
             case SEARCHBAR_TYPE_CHOOSE_DOWN:
                 tvScan.setVisibility(VISIBLE);
                 tvSearch.setVisibility(GONE);
-                setBgColor(ContextCompat.getColor(context, R.color.white));
-                setEditBg(R.drawable.bg_edittext_line);
-                setScanDrawable(R.drawable.ic_down);
-                setEditTextPadding(getResources().getDimensionPixelOffset(R.dimen.padding_dp_12));
-                forbidEdittext(etSearch);
+                if(bgColor==0){
+                    setBgColor(ContextCompat.getColor(context,R.color.white));
+                }
+                if(editBg==0){
+                    setEditBg(R.drawable.bg_edittext_line);
+                }
+                if(editTextPadding==0){
+                    setEditTextPadding(getResources().getDimensionPixelOffset(R.dimen.padding_dp_10));
+                }
+                if(editTextSize==0){
+                    setEditTextSize(getResources().getDimension(R.dimen.textsize_sp_15));
+                }
+                if(editTextColor==0){
+                    setEditTextColor(ContextCompat.getColor(context,R.color.textcolor_333));
+                }
+                if(scanDrawable==0){
+                    setScanDrawable(R.drawable.ic_down);
+                }
+                if(scanPadding==0){
+                    setScanPadding(getResources().getDimensionPixelOffset(R.dimen.padding_dp_8));
+                }
+                if(editPadding==0){
+                    setEditPadding(getResources().getDimensionPixelOffset(R.dimen.padding_dp_10),0);
+                }
+
+                Utils.forbidEdittext(etSearch);
                 break;
             case SEARCHBAR_TYPE_NO:
                 tvScan.setVisibility(GONE);
                 tvSearch.setVisibility(GONE);
-                setBgColor(ContextCompat.getColor(context, R.color.white));
-                setEditBg(R.drawable.bg_edittext_line);
-                setEditTextPadding(getResources().getDimensionPixelOffset(R.dimen.padding_dp_12));
+
+                if(bgColor==0){
+                    setBgColor(ContextCompat.getColor(context,R.color.white));
+                }
+                if(editBg==0){
+                    setEditBg(R.drawable.bg_edittext_line);
+                }
+                if(editTextPadding==0){
+                    setEditTextPadding(getResources().getDimensionPixelOffset(R.dimen.padding_dp_10));
+                }
+                if(editTextSize==0){
+                    setEditTextSize(getResources().getDimension(R.dimen.textsize_sp_15));
+                }
+                if(editTextColor==0){
+                    setEditTextColor(ContextCompat.getColor(context,R.color.textcolor_333));
+                }
+                if(editTextHintColor==0){
+                    setEditTextHintColor(ContextCompat.getColor(context,R.color.textcolor_ccc));
+                }
+                if(editPadding==0){
+                    setEditPadding(getResources().getDimensionPixelOffset(R.dimen.padding_dp_10),0);
+                }
+
                 break;
         }
     }
@@ -354,29 +501,5 @@ public class SearchBar extends RelativeLayout{
         isShowSearch=isShowSearchB;
     }
 
-    /**
-     * 设置编辑框不可用
-     * @param view
-     */
-    public static void forbidEdittext(EditText view){
-        if(view==null){
-            return;
-        }
-        view.setCursorVisible(false);
-        view.setFocusable(false);
-        view.setFocusableInTouchMode(false);
-    }
 
-    /**
-     * 设置编辑框可用
-     * @param view
-     */
-    public static void enabledEdittext(EditText view){
-        if(view==null){
-            return;
-        }
-        view.setCursorVisible(true);
-        view.setFocusable(true);
-        view.setFocusableInTouchMode(true);
-    }
 }

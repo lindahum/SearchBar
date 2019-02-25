@@ -8,7 +8,6 @@
     <com.milinda.searchbar.SearchBar
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:SearchBarType="0"
         app:SearchBarEdittextHintContent="sku编码"
         />
 
@@ -37,7 +36,45 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:SearchBarType="4"
-        app:SearchBarEdittextHintContent="sku2编码"
+        app:SearchBarEdittextHintContent="sku4编码"
         />
+
+
+    <com.milinda.descriptiontext.DescriptionText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:DescriptionTextType="0"
+        app:DescriptionTextLeftTextCotent="测试"
+        app:DescriptionTextLeftTextColor="@color/colorPrimary"
+        app:DescriptionTextLeftTextSize="@dimen/textsize_sp_25"
+        />
+
+    <com.milinda.descriptiontext.DescriptionText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:DescriptionTextType="1"
+        app:DescriptionTextLeftTextCotent="sku名称"
+        app:DescriptionTextRightTextCotent="小米手机"
+        app:DescriptionTextRightGravity="right"
+        />
+
+    <com.milinda.descriptiontext.DescriptionText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:DescriptionTextType="2"
+        app:DescriptionTextLeftTextCotent="sku编码"
+        app:DescriptionTextRightTextCotent="003294"
+        app:DescriptionTextRightGravity="right"
+        />
+
+    <com.milinda.descriptiontext.DescriptionText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:DescriptionTextType="3"
+        app:DescriptionTextLeftTextCotent="货品等级"
+        app:DescriptionTextRightTextCotent="合格品"
+        app:DescriptionTextRightGravity="right"
+        />
+
 
 </LinearLayout>
