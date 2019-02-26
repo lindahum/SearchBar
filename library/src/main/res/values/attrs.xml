@@ -24,6 +24,7 @@
         <attr name="DescriptionTextBackgroundColor" format="color" />
         <attr name="DescriptionTextBackground" format="reference" />
         <attr name="DescriptionTextPadding" format="dimension" />
+        <attr name="DescriptionTextBottomPadding" format="dimension" />
         <attr name="DescriptionTextLeftTextCotent" format="string" />
         <attr name="DescriptionTextLeftTextColor" format="color" />
         <attr name="DescriptionTextLeftTextSize" format="dimension" />

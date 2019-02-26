@@ -325,7 +325,7 @@ public class SearchBar extends RelativeLayout{
                     setEditTextColor(ContextCompat.getColor(context,R.color.textcolor_333));
                 }
                 if(editTextHintColor==0){
-                    setEditTextHintColor(ContextCompat.getColor(context,R.color.textcolor_ccc));
+                    setEditTextHintColor(ContextCompat.getColor(context,R.color.textcolor_555));
                 }
                 if(editTextDrawable==0){
                     setEditTextDrawable(R.drawable.ic_search_goods);
@@ -371,7 +371,7 @@ public class SearchBar extends RelativeLayout{
                     setEditTextColor(ContextCompat.getColor(context,R.color.textcolor_333));
                 }
                 if(editTextHintColor==0){
-                    setEditTextHintColor(ContextCompat.getColor(context,R.color.textcolor_ccc));
+                    setEditTextHintColor(ContextCompat.getColor(context,R.color.textcolor_555));
                 }
                 if(searchDrawable==0){
                     setSearchDrawable(R.drawable.ic_action_go);
@@ -472,7 +472,7 @@ public class SearchBar extends RelativeLayout{
                     setEditTextColor(ContextCompat.getColor(context,R.color.textcolor_333));
                 }
                 if(editTextHintColor==0){
-                    setEditTextHintColor(ContextCompat.getColor(context,R.color.textcolor_ccc));
+                    setEditTextHintColor(ContextCompat.getColor(context,R.color.textcolor_555));
                 }
                 if(editPadding==0){
                     setEditPadding(getResources().getDimensionPixelOffset(R.dimen.padding_dp_10),0);

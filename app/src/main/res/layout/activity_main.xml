@@ -55,7 +55,9 @@
         app:DescriptionTextType="1"
         app:DescriptionTextLeftTextCotent="sku名称"
         app:DescriptionTextRightTextCotent="小米手机"
-        app:DescriptionTextRightGravity="right"
+        app:DescriptionTextRightGravity="left"
+        app:DescriptionTextPadding="@dimen/padding_dp_14"
+        app:DescriptionTextBottomPadding="@dimen/padding_dp_5"
         />
 
     <com.milinda.descriptiontext.DescriptionText
@@ -65,6 +67,8 @@
         app:DescriptionTextLeftTextCotent="sku编码"
         app:DescriptionTextRightTextCotent="003294"
         app:DescriptionTextRightGravity="right"
+        app:DescriptionTextPadding="@dimen/padding_dp_14"
+        app:DescriptionTextBottomPadding="@dimen/padding_dp_5"
         />
 
     <com.milinda.descriptiontext.DescriptionText
@@ -74,6 +78,9 @@
         app:DescriptionTextLeftTextCotent="货品等级"
         app:DescriptionTextRightTextCotent="合格品"
         app:DescriptionTextRightGravity="right"
+        app:DescriptionTextLeftDrawable="@drawable/ic_inbound_number"
+        app:DescriptionTextPadding="@dimen/padding_dp_14"
+        app:DescriptionTextBottomPadding="@dimen/padding_dp_10"
         />
 
 

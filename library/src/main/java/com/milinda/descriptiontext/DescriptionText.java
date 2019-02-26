@@ -5,22 +5,22 @@ import android.content.res.TypedArray;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.content.res.ResourcesCompat;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.RelativeLayout;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.milinda.searchbar.R;
 import com.milinda.utils.Utils;
 
-public class DescriptionText extends RelativeLayout {
+public class DescriptionText extends LinearLayout {
 
     private int bgColor;
     private int layoutBg;
     private int layoutPadding;
+    private int layoutBottomPadding;
     private String leftTextContent;
     private int leftTextColor;
     private float leftTextSize;
@@ -38,7 +38,7 @@ public class DescriptionText extends RelativeLayout {
     private Context context;
     private LayoutInflater inflater;
 
-    private RelativeLayout rlDescription;
+    private LinearLayout rlDescription;
     private TextView tvLeft;
     private TextView tvRight;
 
@@ -80,6 +80,10 @@ public class DescriptionText extends RelativeLayout {
 
                 }else if (attr == R.styleable.DescriptionText_DescriptionTextPadding) {
                     layoutPadding = t.getDimensionPixelOffset(R.styleable.DescriptionText_DescriptionTextPadding,
+                            0);
+
+                }else if (attr == R.styleable.DescriptionText_DescriptionTextBottomPadding) {
+                    layoutBottomPadding = t.getDimensionPixelOffset(R.styleable.DescriptionText_DescriptionTextBottomPadding,
                             0);
 
                 }else if (attr == R.styleable.DescriptionText_DescriptionTextLeftTextCotent) {
@@ -156,7 +160,7 @@ public class DescriptionText extends RelativeLayout {
 
         setBgColor(bgColor);
         setLayoutBg(layoutBg);
-        setLayoutPadding(layoutPadding);
+        setLayoutPadding(layoutPadding,layoutBottomPadding);
         setLeftTextContent(leftTextContent);
         setLeftTextColor(leftTextColor);
         setLeftTextSize(leftTextSize);
@@ -186,7 +190,7 @@ public class DescriptionText extends RelativeLayout {
                     setLeftTextSize(getResources().getDimension(R.dimen.textsize_sp_15));
                 }
                 if (leftTextColor==0){
-                    setLeftTextColor(ContextCompat.getColor(context, R.color.textcolor_ccc));
+                    setLeftTextColor(ContextCompat.getColor(context, R.color.textcolor_555));
                 }
                 if(rightTextSize==0){
                     setRightTextSize(getResources().getDimension(R.dimen.textsize_sp_18));
@@ -196,7 +200,7 @@ public class DescriptionText extends RelativeLayout {
                 }
 
                 if (layoutPadding==0){
-                    setLayoutPadding(getResources().getDimensionPixelOffset(R.dimen.padding_dp_12));
+                    setLayoutPadding(getResources().getDimensionPixelOffset(R.dimen.padding_dp_12),0);
                 }
 
                 break;
@@ -218,7 +222,7 @@ public class DescriptionText extends RelativeLayout {
                     setLeftTextSize(getResources().getDimension(R.dimen.textsize_sp_15));
                 }
                 if (leftTextColor==0){
-                    setLeftTextColor(ContextCompat.getColor(context, R.color.textcolor_ccc));
+                    setLeftTextColor(ContextCompat.getColor(context, R.color.textcolor_555));
                 }
                 if(rightTextSize==0){
                     setRightTextSize(getResources().getDimension(R.dimen.textsize_sp_18));
@@ -228,16 +232,13 @@ public class DescriptionText extends RelativeLayout {
                 }
 
                 if (layoutPadding==0){
-                    setLayoutPadding(getResources().getDimensionPixelOffset(R.dimen.padding_dp_12));
+                    setLayoutPadding(getResources().getDimensionPixelOffset(R.dimen.padding_dp_12),getResources().getDimensionPixelOffset(R.dimen.padding_dp_12));
                 }
                 break;
             case DESCRIPTION_TYPE_PIC_SHOW:
                 tvRight.setVisibility(VISIBLE);
                 tvLeft.setVisibility(VISIBLE);
 
-                if(leftTextDrawable==0){
-                    setLeftTextDrawable(R.drawable.ic_search_goods);
-                }
                 if (leftTextDrawablePadding==0){
                     setLeftTextDrawablePadding(getResources().getDimensionPixelOffset(R.dimen.padding_dp_5));
                 }
@@ -249,7 +250,7 @@ public class DescriptionText extends RelativeLayout {
                     setLeftTextSize(getResources().getDimension(R.dimen.textsize_sp_15));
                 }
                 if (leftTextColor==0){
-                    setLeftTextColor(ContextCompat.getColor(context, R.color.textcolor_ccc));
+                    setLeftTextColor(ContextCompat.getColor(context, R.color.textcolor_555));
                 }
                 if(rightTextSize==0){
                     setRightTextSize(getResources().getDimension(R.dimen.textsize_sp_18));
@@ -259,7 +260,7 @@ public class DescriptionText extends RelativeLayout {
                 }
 
                 if (layoutPadding==0){
-                    setLayoutPadding(getResources().getDimensionPixelOffset(R.dimen.padding_dp_12));
+                    setLayoutPadding(getResources().getDimensionPixelOffset(R.dimen.padding_dp_12),0);
                 }
                 break;
             case DESCRIPTION_TYPE_NO:
@@ -272,10 +273,11 @@ public class DescriptionText extends RelativeLayout {
                     setLeftTextSize(getResources().getDimension(R.dimen.textsize_sp_15));
                 }
                 if (leftTextColor==0){
-                    setLeftTextColor(ContextCompat.getColor(context, R.color.textcolor_ccc));
+                    setLeftTextColor(ContextCompat.getColor(context, R.color.textcolor_555));
                 }
                 if (layoutPadding==0){
-                    setLayoutPadding(getResources().getDimensionPixelOffset(R.dimen.padding_dp_12));
+                    setLayoutPadding(getResources().getDimensionPixelOffset(R.dimen.padding_dp_12),
+                            getResources().getDimensionPixelOffset(R.dimen.padding_dp_12));
                 }
                 break;
         }
@@ -296,10 +298,13 @@ public class DescriptionText extends RelativeLayout {
         }
     }
 
-    public void setLayoutPadding(int layoutPadding) {
+    public void setLayoutPadding(int layoutPadding,int layoutBottomPadding) {
         if(layoutPadding>0){
             this.layoutPadding = layoutPadding;
-            rlDescription.setPadding(layoutPadding,layoutPadding,layoutPadding,layoutPadding);
+            if(layoutBottomPadding>0) {
+                this.layoutBottomPadding = layoutBottomPadding;
+            }
+            rlDescription.setPadding(layoutPadding,layoutPadding,layoutPadding,layoutBottomPadding);
         }
     }
 
@@ -377,10 +382,10 @@ public class DescriptionText extends RelativeLayout {
         this.rightTextGravity=gravity;
         switch (gravity){
             case 1:
-                tvRight.setGravity(Gravity.RIGHT);
+                tvRight.setGravity(Gravity.RIGHT|Gravity.CENTER_VERTICAL);
                 break;
             case 0:
-                tvRight.setGravity(Gravity.LEFT);
+                tvRight.setGravity(Gravity.LEFT|Gravity.CENTER_VERTICAL);
                 break;
         }
     }
